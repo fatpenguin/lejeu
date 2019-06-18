@@ -1,15 +1,30 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 int main()
 {
+    // Load textures
+    sf::Texture texture;
+    if(!texture.loadFromFile("assets/sprites/image1.jpeg"))
+    {
+        printf("Not able to load file assets/image1.jpeg\n");
+        return -1;
+    }
+    sf::Sprite sprite(texture);
+
+    // Load sound
+    sf::SoundBuffer buffer;
+    if(!buffer.loadFromFile("assets/sounds/music1.wav"))
+    {
+        printf("Not able to load file assets/sounds/music1.wav\n");
+        return -1;
+    }
+    
+    // Create main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
     window.setFramerateLimit(60);
 
-    // Load textures
-    sf::Texture texture;
-    texture.loadFromFile("assets/image1.jpeg");
-
-    sf::Sprite sprite(texture);
+    // Declare event here
     sf::Event event;
 
     while (window.isOpen())

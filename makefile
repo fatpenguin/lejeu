@@ -1,4 +1,4 @@
-LIBS=-lsfml-graphics -lsfml-window -lsfml-system
+LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 TARGET=sfml-app
 
 all: thegame

@@ -31,5 +31,8 @@
 *.out
 *.app
 
-#visual studio code
+# Visual studio code
 .vscode/
+
+# Tests files
+tests/

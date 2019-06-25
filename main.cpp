@@ -19,7 +19,7 @@ int main()
         printf("Not able to load file assets/sounds/music1.wav\n");
         return -1;
     }
-    
+
     // Create main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
     window.setFramerateLimit(60);

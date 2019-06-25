@@ -62,19 +62,21 @@ bool updateActionButton(Controls *control, Action actionType, sf::Event::EventTy
     return 0;
 }
 
-Controls instantiateControls(char *filePath)
+// Controls instantiateControls(char *filePath)
+Controls instantiateControls(void)
 {
     struct Controls control;
-    // Not check that file exist
-    FILE *handler = fopen(filePath, "r");
-
-    if (handler)
-    {
-        while ((c == getc(handler)) != EOF)
-        {
-            
-        }
-        fclose(handler)
-    }
     return control;
+    // // Not check that file exist
+    // FILE *handler = fopen(filePath, "r");
+
+    // if (handler)
+    // {
+    //     while ((c == getc(handler)) != EOF)
+    //     {
+
+    //     }
+    //     fclose(handler)
+    // }
+    // return control;
 }

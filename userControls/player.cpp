@@ -26,5 +26,5 @@ void attack(Player player)
 void jump(Player player)
 // void jump(void)
 {
-    printf("%s is jumping\n", name);
+    printf("%s is jumping\n", player.name);
 }

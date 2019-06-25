@@ -23,8 +23,8 @@ void attack(Player player)
     printf("%s is attacking\n", player.name);
 }
 
-// void jump(Player player)
-void jump(void)
+void jump(Player player)
+// void jump(void)
 {
     printf("%s is jumping\n", name);
 }

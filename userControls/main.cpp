@@ -60,8 +60,8 @@ int main()
                     break;
                 case JUMP:
                     printf("JUMP requested\n");
-                    // jump(player);
-                    player.jump();
+                    jump(player);
+                    // player.jump();
                     fflush(stdout);
                     break;
 

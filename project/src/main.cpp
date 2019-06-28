@@ -31,7 +31,9 @@ int main(void)
 	game_init();
 
 	cout << "Game update rate = "<<UPDATE_RATE<<" ("<<MS_PER_UPDATE<<"ms per update)\n";
-	// cout << "Players = "<<game_ctx.entities->characters[0].name<<"\n";
+	printf("Players = %s (%d:%d)\n", game_ctx.entities->characters[0].name,
+	                                 game_ctx.entities->transforms[0].pos.x,
+	                                 game_ctx.entities->transforms[0].pos.y);
 	cout << "Game start\n";
 
 	for (;;) {

@@ -10,6 +10,7 @@ LIBS += #-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # List sources and include directories
 SOURCES += $(SOURCES_DIR)/main.cpp
+INCLUDE_PATHS += $(SOURCES_DIR)
 
 INCLUDE_PATHS += $(SOURCES_DIR)/components
 

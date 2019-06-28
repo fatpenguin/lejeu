@@ -1,14 +1,17 @@
 #ifndef __INCLUDE_MODEL_HPP__
 #define __INCLUDE_MODEL_HPP__
 
+#include <cstdint>
+
 
 typedef struct {
 	int **sprite;
+	uint16_t size_x;
+	uint16_t size_y;
 
-	int size_x;
-	int size_y;
+	uint8_t color;
 
-	int color;
+	uint8_t collides;
 } comp_model_t;
 
 

@@ -1,4 +1,4 @@
-// #include "main.hpp"
+#include "main.hpp"
 
 #include <iostream>
 #include <unistd.h>
@@ -12,11 +12,13 @@ using namespace std;
 using ms = chrono::milliseconds;
 using get_time = chrono::steady_clock;
 
+game_ctx_t game_ctx = {0};
+
 static int game_init(void)
 {
 	cout << "Initialization\n";
 
-	// game_ctx.entities = entities_init();
+	game_ctx.entities = entities_init();
 
 	return 0;
 }
@@ -25,7 +27,6 @@ int main(void)
 {
 	auto last_ts = chrono::duration_cast<ms>(get_time::now().time_since_epoch()).count();
 	int lag = 0;
-	// game_ctx_t game_ctx = {0};
 
 	game_init();
 

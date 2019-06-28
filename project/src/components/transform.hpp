@@ -12,9 +12,13 @@ enum rotation : uint8_t {
 };
 
 typedef struct {
-	/* Position */
 	uint32_t x;
 	uint32_t y;
+} pos_t;
+
+typedef struct {
+	/* Position */
+	pos_t pos;
 	enum rotation rot;
 
 	/* Movement */

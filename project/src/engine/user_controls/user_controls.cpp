@@ -108,6 +108,7 @@ void controls_check_input(sf::RenderWindow *window)
 			break;
 		case ACT_NONE:
 			printf("no action needed\n");
+			break;
 		default:
 			printf("[CONTROLS] Action %d unknown\n",
 			       controls_ctx.key_action[event.key.code]);

@@ -54,6 +54,7 @@ int main(void)
 		}
 
 		/* Render */
+		render();
 	}
 
 	return 0;

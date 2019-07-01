@@ -10,6 +10,6 @@ typedef struct {
 
 
 renderer_ctx_t* renderer_init(void);
-
+int render(void);
 
 #endif /* __RENDERER_HPP__ */

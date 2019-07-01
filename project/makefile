@@ -20,6 +20,9 @@ INCLUDE_PATHS += $(SOURCES_DIR)/engine/entities
 SOURCES += $(SOURCES_DIR)/engine/user_controls/user_controls.cpp
 INCLUDE_PATHS += $(SOURCES_DIR)/engine/user_controls
 
+SOURCES += $(SOURCES_DIR)/engine/renderer/renderer.cpp
+INCLUDE_PATHS += $(SOURCES_DIR)/engine/renderer/
+
 # Generate include options
 INCLUDES = $(addprefix -I, $(INCLUDE_PATHS))
 

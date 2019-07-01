@@ -12,7 +12,7 @@ using namespace std;
 using ms = chrono::milliseconds;
 using get_time = chrono::steady_clock;
 
-game_ctx_t game_ctx = {0};
+game_ctx_t game_ctx = {};
 
 static int game_init(void)
 {
@@ -30,7 +30,7 @@ int main(void)
 
 	game_init();
 
-	cout << "Game update rate = "<<UPDATE_RATE<<" ("<<MS_PER_UPDATE<<"ms per update)\n";
+	printf("Game update rate = %d (\"%d\")\n", UPDATE_RATE, MS_PER_UPDATE);
 	printf("Players = %s (%d:%d)\n", game_ctx.entities->characters[0].name,
 	                                 game_ctx.entities->transforms[0].pos.x,
 	                                 game_ctx.entities->transforms[0].pos.y);
@@ -47,7 +47,6 @@ int main(void)
 
 		while (lag >= MS_PER_UPDATE) {
 			/* Update game state */
-			cout << "Update game\n";
 
 			lag -= MS_PER_UPDATE;
 		}

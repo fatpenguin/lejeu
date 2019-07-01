@@ -6,7 +6,7 @@ SOURCES_DIR = src
 TARGET = $(BUILD_DIR)/lejeu
 
 # List libs
-LIBS += #-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # List sources and include directories
 SOURCES += $(SOURCES_DIR)/main.cpp
@@ -16,6 +16,9 @@ INCLUDE_PATHS += $(SOURCES_DIR)/components
 
 SOURCES += $(SOURCES_DIR)/entities/entities.cpp
 INCLUDE_PATHS += $(SOURCES_DIR)/entities
+
+SOURCES += $(SOURCES_DIR)/user_controls/user_controls.cpp
+INCLUDE_PATHS += $(SOURCES_DIR)/user_controls
 
 # Generate include options
 INCLUDES = $(addprefix -I, $(INCLUDE_PATHS))

@@ -5,10 +5,10 @@
 
 
 enum rotation : uint8_t {
-	UP,
-	RIGHT,
-	DOWN,
-	LEFT,
+	ROT_UP,
+	ROT_RIGHT,
+	ROT_DOWN,
+	ROT_LEFT,
 };
 
 typedef struct {

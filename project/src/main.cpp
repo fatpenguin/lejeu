@@ -19,6 +19,11 @@ static int game_init(void)
 	cout << "Initialization\n";
 
 	game_ctx.entities = entities_init();
+	game_ctx.controls = controls_init();
+
+	// Temporary
+	game_ctx.window.create(sf::VideoMode(800, 600), "My window");
+	game_ctx.window.setFramerateLimit(60);
 
 	return 0;
 }
@@ -43,7 +48,7 @@ int main(void)
 		last_ts = curr_ts;
 
 		/* Process input */
-
+		controls_check_input(&game_ctx.window);
 
 		while (lag >= MS_PER_UPDATE) {
 			/* Update game state */

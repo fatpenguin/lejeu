@@ -12,13 +12,13 @@ LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 SOURCES += $(SOURCES_DIR)/main.cpp
 INCLUDE_PATHS += $(SOURCES_DIR)
 
-INCLUDE_PATHS += $(SOURCES_DIR)/components
+INCLUDE_PATHS += $(SOURCES_DIR)/engine/components
 
-SOURCES += $(SOURCES_DIR)/entities/entities.cpp
-INCLUDE_PATHS += $(SOURCES_DIR)/entities
+SOURCES += $(SOURCES_DIR)/engine/entities/entities.cpp
+INCLUDE_PATHS += $(SOURCES_DIR)/engine/entities
 
-SOURCES += $(SOURCES_DIR)/user_controls/user_controls.cpp
-INCLUDE_PATHS += $(SOURCES_DIR)/user_controls
+SOURCES += $(SOURCES_DIR)/engine/user_controls/user_controls.cpp
+INCLUDE_PATHS += $(SOURCES_DIR)/engine/user_controls
 
 # Generate include options
 INCLUDES = $(addprefix -I, $(INCLUDE_PATHS))

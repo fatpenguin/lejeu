@@ -3,25 +3,17 @@ SRC_EXT = cpp
 
 BUILD_DIR = build
 SOURCES_DIR = src
+ENGINE_DIR = $(SOURCES_DIR)/engine
+
 TARGET = $(BUILD_DIR)/lejeu
 
 # List libs
 LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # List sources and include directories
+include $(ENGINE_DIR)/makefile
 SOURCES += $(SOURCES_DIR)/main.cpp
 INCLUDE_PATHS += $(SOURCES_DIR)
-
-INCLUDE_PATHS += $(SOURCES_DIR)/engine/components
-
-SOURCES += $(SOURCES_DIR)/engine/entities/entities.cpp
-INCLUDE_PATHS += $(SOURCES_DIR)/engine/entities
-
-SOURCES += $(SOURCES_DIR)/engine/user_controls/user_controls.cpp
-INCLUDE_PATHS += $(SOURCES_DIR)/engine/user_controls
-
-SOURCES += $(SOURCES_DIR)/engine/renderer/renderer.cpp
-INCLUDE_PATHS += $(SOURCES_DIR)/engine/renderer/
 
 # Generate include options
 INCLUDES = $(addprefix -I, $(INCLUDE_PATHS))

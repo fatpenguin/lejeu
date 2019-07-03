@@ -5,6 +5,8 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "entities.hpp"
+
 
 #define NB_KB_ACTIONS       sf::Keyboard::KeyCount
 #define NB_MOUSE_ACTIONS    6
@@ -30,17 +32,6 @@ enum input_type {
 	COUNT_INPUTTYPE
 };
 
-
-// struct keys {
-// 	enum input_type      act_type;
-// 	sf::Event::EventType evt_type;
-// 	union sf_control {
-// 		sf::Keyboard::Key    key;
-// 		sf::Mouse::Button    button;
-// 	};
-
-// } keys_t;
-
 typedef struct {
 	/* For KeyPressed event type */
 	uint8_t key_action[NB_KB_ACTIONS];
@@ -56,7 +47,7 @@ typedef struct {
 
 
 controls_ctx_t* controls_init(void);
-void controls_check_input(sf::RenderWindow *window);
+void controls_check_input(sf::RenderWindow *window, entities_ctx_t *entities);
 
 
 #endif /* __CONTROLS_HPP__ */

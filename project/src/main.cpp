@@ -2,15 +2,12 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <chrono>
 
 #define UPDATE_RATE   30 // Hz
 #define MS_PER_UPDATE (1000 / UPDATE_RATE)
 
 
 using namespace std;
-using ms = chrono::milliseconds;
-using get_time = chrono::steady_clock;
 
 game_ctx_t game_ctx = {};
 
@@ -27,8 +24,8 @@ static int game_init(void)
 
 int main(void)
 {
-	auto last_ts = chrono::duration_cast<ms>(get_time::now().time_since_epoch()).count();
-	int lag = 0;
+	sf::Clock clock;
+	int32_t lag = 0, curr_ts, last_ts = clock.getElapsedTime().asMilliseconds();
 
 	game_init();
 
@@ -40,7 +37,7 @@ int main(void)
 
 	for (;;) {
 		/* Time handling */
-		auto curr_ts = chrono::duration_cast<ms>(get_time::now().time_since_epoch()).count();
+		curr_ts = clock.getElapsedTime().asMilliseconds();
 		lag += (curr_ts - last_ts);
 		last_ts = curr_ts;
 

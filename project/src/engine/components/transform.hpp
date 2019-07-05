@@ -12,8 +12,8 @@ enum rotation : uint8_t {
 };
 
 typedef struct {
-	uint32_t x;
-	uint32_t y;
+	int32_t x;
+	int32_t y;
 } pos_t;
 
 typedef struct {

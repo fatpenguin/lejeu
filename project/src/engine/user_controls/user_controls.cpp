@@ -3,75 +3,38 @@
 
 
 using namespace std;
+using sfkb = sf::Keyboard;
 
 controls_ctx_t controls_ctx = {};
 
-//TODO: Find old key binding and delete it before assigning a new one
-static bool update_action_kb(int key, enum action_type action)
+static bool update_action(enum action_type action, int key,
+                          enum input_type type)
 {
-	if (key >= NB_KB_ACTIONS) {
-		cout << "[CONTROLS] Key event id %d not valid" << key << "\n";
+	if (action >= COUNT_ACTION) {
 		return -1;
 	}
 
-	controls_ctx.key_action[key] = action;
+	if (key >= sfkb::KeyCount) {
+		return -1;
+	}
+
+	if (type >= COUNT_INPUTTYPE) {
+		return -1;
+	}
+
+	controls_ctx.actions[action].type = type;
+	controls_ctx.actions[action].key = key;
 
 	return 0;
-}
-
-static bool update_action_mouse(int key, enum action_type action)
-{
-	if (key >= NB_MOUSE_ACTIONS) {
-		cout << "[CONTROLS] Mouse event id %d not valid" << key << "\n";
-		return -1;
-	}
-
-	controls_ctx.mouse_action[key] = action;
-
-	return 0;
-}
-
-static bool update_action_joystick(int key, enum action_type action)
-{
-	if (key >= NB_JOYSTICK_ACTIONS) {
-		cout << "[CONTROLS] Joystick id %d not valid" << key << "\n";
-		return -1;
-	}
-
-	controls_ctx.joystick_action[key] = action;
-
-	return 0;
-}
-
-static bool update_action(int key, enum action_type action, enum input_type type)
-{
-	bool ret = 0;
-
-	switch (type) {
-	case IN_KEYBOARD:
-		ret = update_action_kb(key, action);
-		break;
-	case IN_MOUSE:
-		ret = update_action_mouse(key, action);
-		break;
-	case IN_JOYSTICK:
-		ret = update_action_joystick(key, action);
-		break;
-	default:
-		cout << "[CONTROLS] Input type not recognized\n";
-		return -1;
-	}
-
-	return ret;
 }
 
 controls_ctx_t* controls_init(void)
 {
-	if (update_action(sf::Keyboard::Z, ACT_UP, IN_KEYBOARD) ||
-	    update_action(sf::Keyboard::Q, ACT_LEFT, IN_KEYBOARD) ||
-	    update_action(sf::Keyboard::D, ACT_RIGHT, IN_KEYBOARD) ||
-	    update_action(sf::Keyboard::S, ACT_DOWN, IN_KEYBOARD) ||
-	    update_action(sf::Keyboard::Space, ACT_JUMP, IN_KEYBOARD))
+	if (update_action(ACT_UP, sfkb::Z, IN_KEYBOARD) ||
+	    update_action(ACT_LEFT, sfkb::Q, IN_KEYBOARD) ||
+	    update_action(ACT_RIGHT, sfkb::D, IN_KEYBOARD) ||
+	    update_action(ACT_DOWN, sfkb::S, IN_KEYBOARD) ||
+	    update_action(ACT_JUMP, sfkb::Space, IN_KEYBOARD))
 	{
 		goto err;
 	}
@@ -82,37 +45,16 @@ err:
 	return NULL;
 }
 
-void controls_check_input(sf::RenderWindow *window)
+void controls_check_input(void)
 {
-	static sf::Event event;
+	user_control_action_t *acts = controls_ctx.actions;
 
-	// TODO: maybe loop over poll to empty queue ?
-	window->pollEvent(event);
-
-	if (event.type == sf::Event::KeyPressed) {
-		switch (controls_ctx.key_action[event.key.code]) {
-		case ACT_UP:
-			printf("UP requested\n");
-			break;
-		case ACT_LEFT:
-			printf("LEFT requested\n");
-			break;
-		case ACT_RIGHT:
-			printf("RIGHT requested\n");
-			break;
-		case ACT_DOWN:
-			printf("DOWN requested\n");
-			break;
-		case ACT_JUMP:
-			printf("JUMP requested\n");
-			break;
-		case ACT_NONE:
-			printf("no action needed\n");
-			break;
-		default:
-			printf("[CONTROLS] Action %d unknown\n",
-			       controls_ctx.key_action[event.key.code]);
-			break;
+	controls_ctx.active_cnt = 0;
+	for(int i=0; i<COUNT_ACTION; i++) {
+		if (acts[i].type == IN_KEYBOARD &&
+		    sfkb::isKeyPressed((sfkb::Key)acts[i].key))
+		{
+			controls_ctx.active[controls_ctx.active_cnt] = (enum action_type)i;
 		}
 	}
 }

@@ -3,6 +3,9 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "player.hpp"
+
+
 #define UPDATE_RATE   30 // Hz
 #define MS_PER_UPDATE (1000 / UPDATE_RATE)
 
@@ -42,10 +45,27 @@ int main(void)
 		last_ts = curr_ts;
 
 		/* Process input */
-		controls_check_input(&game_ctx.renderer->window);
+		if (game_ctx.renderer->window.hasFocus()) {
+			printf("check input\n");
+			controls_check_input();
+		}
 
 		while (lag >= MS_PER_UPDATE) {
 			/* Update game state */
+			int i;
+			for(i=0; i<game_ctx.controls->active_cnt; i++) {
+				player::action(game_ctx.entities,
+				               game_ctx.controls->active[i]);
+			}
+
+			/* DEBUG */
+			printf(">>> %d\n", game_ctx.entities->nb_entities);
+			for(i=0; i<game_ctx.entities->nb_entities; i++) {
+				printf("Ent %d: (%d:%d - %d)\n", i,
+				       game_ctx.entities->transforms[i].pos.x,
+				       game_ctx.entities->transforms[i].pos.y,
+				       game_ctx.entities->transforms[i].rot);
+			}
 
 			lag -= MS_PER_UPDATE;
 		}

@@ -12,12 +12,17 @@ entities_ctx_t entities_ctx = {};
 
 entities_ctx_t* entities_init(void)
 {
-	pos_t player_pos = {
-		.x = 50,
-		.y = 50,
+	comp_transform_t transform = {
+		.pos = {
+			.x = 200,
+			.y = 150,
+		},
+		.rot = ROT_UP,
+		.velocity = 10,
 	};
 
-	Player player_one(&entities_ctx, (char *)"Link", &player_pos);
+	EntPlayer player_one(&entities_ctx, (char *)"Link", &transform);
+	entities_ctx.player_id = player_one.id;
 
 	return &entities_ctx;
 }

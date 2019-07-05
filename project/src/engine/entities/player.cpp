@@ -19,7 +19,10 @@ static void move(entities_ctx_t *entities, enum action_type action)
 	int player_id = entities->player_id;
 	comp_transform_t *trans = entities->transforms;
 	comp_transform_t *player_trans = &entities->transforms[player_id];
-	pos_t new_pos = {};
+	pos_t new_pos = {
+		.x = player_trans->pos.x,
+		.y = player_trans->pos.y,
+	};
 	int i;
 
 	/* Estimate new pos */

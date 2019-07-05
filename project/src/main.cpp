@@ -46,7 +46,6 @@ int main(void)
 
 		/* Process input */
 		if (game_ctx.renderer->window.hasFocus()) {
-			printf("check input\n");
 			controls_check_input();
 		}
 

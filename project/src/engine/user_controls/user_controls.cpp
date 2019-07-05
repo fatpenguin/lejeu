@@ -55,6 +55,7 @@ void controls_check_input(void)
 		    sfkb::isKeyPressed((sfkb::Key)acts[i].key))
 		{
 			controls_ctx.active[controls_ctx.active_cnt] = (enum action_type)i;
+			controls_ctx.active_cnt++;
 		}
 	}
 }

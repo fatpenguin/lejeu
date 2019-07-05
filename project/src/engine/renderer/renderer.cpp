@@ -16,6 +16,5 @@ renderer_ctx_t* renderer_init(void)
 
 int render(void)
 {
-	cout << "render\n";
 	return 0;
 }

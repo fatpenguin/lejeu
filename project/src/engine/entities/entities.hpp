@@ -15,6 +15,8 @@ typedef struct {
 	comp_character_t characters[ENTITIES_MAX_SIZE];
 
 	int nb_entities;
+
+	int player_id;
 } entities_ctx_t;
 
 class Entity {

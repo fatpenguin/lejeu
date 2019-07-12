@@ -28,22 +28,18 @@ static void move(entities_ctx_t *entities, enum action_type action)
 	/* Estimate new pos */
 	switch (action) {
 		case ACT_UP:
-			printf("UP\n");
 			player_trans->rot = ROT_UP;
 			new_pos.y -= player_trans->velocity;
 			break;
 		case ACT_DOWN:
-			printf("DOWN\n");
 			player_trans->rot = ROT_DOWN;
 			new_pos.y += player_trans->velocity;
 			break;
 		case ACT_LEFT:
-			printf("LEFT\n");
 			player_trans->rot = ROT_LEFT;
 			new_pos.x -= player_trans->velocity;
 			break;
 		case ACT_RIGHT:
-			printf("RIGHT\n");
 			player_trans->rot = ROT_RIGHT;
 			new_pos.x += player_trans->velocity;
 			break;
@@ -55,7 +51,6 @@ static void move(entities_ctx_t *entities, enum action_type action)
 	if (new_pos.x < 0 || new_pos.y < 0 ||
 	    new_pos.x >= MAP_MAX_X || new_pos.y >= MAP_MAX_Y)
 	{
-		printf("OUT\n");
 		return;
 	}
 	for (i=0; i<entities->nb_entities; i++) {
@@ -65,7 +60,6 @@ static void move(entities_ctx_t *entities, enum action_type action)
 		if (trans[i].pos.x == new_pos.x && trans[i].pos.y == new_pos.y
 		    && entities->models[i].collides)
 		{
-			printf("COLLISION\n");
 			return;
 		}
 	}
@@ -75,16 +69,20 @@ static void move(entities_ctx_t *entities, enum action_type action)
 	player_trans->pos.y = new_pos.y;
 }
 
-void player::action(entities_ctx_t *entities, enum action_type action)
+void player::actions(entities_ctx_t *entities, controls_ctx_t *controls)
 {
-	switch (action) {
-		case ACT_UP:
-		case ACT_DOWN:
-		case ACT_LEFT:
-		case ACT_RIGHT:
-			move(entities, action);
-			break;
-		default:
-			break;
+	int i, active_cnt = controls->active_cnt;
+
+	for (i=0; i<active_cnt; i++) {
+		switch (controls->active[i]) {
+			case ACT_UP:
+			case ACT_DOWN:
+			case ACT_LEFT:
+			case ACT_RIGHT:
+				move(entities, controls->active[i]);
+				break;
+			default:
+				break;
+		}
 	}
 }

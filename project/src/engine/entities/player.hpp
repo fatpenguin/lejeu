@@ -14,7 +14,7 @@ class EntPlayer : public Entity {
 };
 
 namespace player {
-	void action(entities_ctx_t *entities, enum action_type action);
+	void actions(entities_ctx_t *entities, controls_ctx_t *controls);
 }
 
 #endif /* __INCLUDE_PLAYER_HPP__ */

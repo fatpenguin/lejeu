@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_MAIN_HPP__
-#define __INCLUDE_MAIN_HPP__
+#ifndef __INCLUDE_MAINLOOP_HPP__
+#define __INCLUDE_MAINLOOP_HPP__
 
 #include "entities.hpp"
 #include "user_controls.hpp"
@@ -14,4 +14,6 @@ typedef struct {
 
 } game_ctx_t;
 
-#endif /* __INCLUDE_MAIN_HPP__ */
+void mainloop(game_ctx_t *game_ctx);
+
+#endif /* __INCLUDE_MAINLOOP_HPP__ */
